@@ -14,7 +14,7 @@ import {
     updateDoc,
 } from "../services/collections";
 import { firestore, auth } from "firebase";
-import styled from 'styled-components';
+import styled from 'styled-components/native';
 
 
 const ListButton = ({ title, color, onPress, onDelete, onOptions }) => {
@@ -48,13 +48,6 @@ const renderAddListIcon = (navigation, addItemToLists) => {
                 style={{ justifyContent: "center", marginRight: 15 }}
             >
                 <Ionicons name="add-circle" size={20} />
-            </TouchableOpacity>
-
-            <TouchableOpacity
-                style={{ justifyContent: "center", marginRight: 15 }}
-                onPress={() => navigation.navigate("Settings")}
-            >
-                <Ionicons name="settings" size={20} />
             </TouchableOpacity>
             
             <TouchableOpacity
@@ -157,7 +150,7 @@ const styles = StyleSheet.create({
         flex: 1,
         backgroundColor: "#fff",
     },
-    itemTitle: { },
+    itemTitle: { fontSize: 24, padding: 5, color: "white" },
     itemContainer: {
         flexDirection: "row",
         justifyContent: "space-between",

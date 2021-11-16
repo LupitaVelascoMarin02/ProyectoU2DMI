@@ -16,7 +16,7 @@ import {
     udpateDoc,
 } from "../services/collections";
 import { firestore, auth } from "firebase";
-import styled from 'styled-components';
+import styled from 'styled-components/native';
 
 const StyledView = styled.View`
     flex: 1px;

@@ -10,7 +10,7 @@ import {
 import Colors from "../constants/Colors";
 import ColorSelector from "../components/ColorSelector";
 import Button from "../components/Button";
-import styled from 'styled-components';
+import styled from 'styled-components/native';
 
 const StyledView = styled.View`
     flex: 1px;

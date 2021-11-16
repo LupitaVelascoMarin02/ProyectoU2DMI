@@ -5,7 +5,7 @@ import LabeledInput from "../components/LabeledInput";
 import Colors from "../constants/Colors";
 import validator from "validator";
 import { auth, firestore } from "firebase";
-import styled from 'styled-components';
+import styled from 'styled-components/native';
 
 const StyledView = styled.View`
     flex: 1px;
