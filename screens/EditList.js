@@ -10,6 +10,14 @@ import {
 import Colors from "../constants/Colors";
 import ColorSelector from "../components/ColorSelector";
 import Button from "../components/Button";
+import styled from 'styled-components';
+
+const StyledView = styled.View`
+    flex: 1px;
+    backgroundColor: #fff;
+    padding: 5px;
+    justifyContent: space-between;
+`;
 
 const colorList = [
     "blue",
@@ -30,7 +38,7 @@ export default ({ navigation, route }) => {
     const [isValid, setValidity] = useState(true);
 
     return (
-        <View style={styles.container}>
+        <StyledView>
             <View>
                 <View style={{ flexDirection: "row" }}>
                     <Text style={styles.label}>List Name</Text>
@@ -80,16 +88,13 @@ export default ({ navigation, route }) => {
                     }
                 }}
             />
-        </View>
+        </StyledView>
     );
 };
 
 const styles = StyleSheet.create({
     container: {
-        flex: 1,
-        backgroundColor: "#fff",
-        padding: 5,
-        justifyContent: "space-between",
+        
     },
     input: {
         color: Colors.darkGray,

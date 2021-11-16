@@ -5,7 +5,14 @@ import LabeledInput from "../components/LabeledInput";
 import Colors from "../constants/Colors";
 import validator from "validator";
 import { auth, firestore } from "firebase";
+import styled from 'styled-components';
 
+const StyledView = styled.View`
+    flex: 1px;
+    backgroundColor: #fff;
+    justifyContent: space-between;
+    alignItems: stretch;
+`;
 const validateFields = (email, password) => {
     const isValid = {
         email: validator.isEmail(email),
@@ -54,7 +61,7 @@ export default () => {
     });
 
     return (
-        <View style={styles.container}>
+        <StyledView>
             <Text style={styles.header}>Proyecto U2</Text>
             <View style={{ flex: 1 }}>
                 <LabeledInput
@@ -149,17 +156,11 @@ export default () => {
                 buttonStyle={{ backgroundColor: Colors.pink }}
                 text={isCreateMode ? "Create Account" : "Login"}
             />
-        </View>
+        </StyledView>
     );
 };
 
 const styles = StyleSheet.create({
-    container: {
-        flex: 1,
-        backgroundColor: "#fff",
-        justifyContent: "space-between",
-        alignItems: "stretch",
-    },
     label: { fontSize: 16, fontWeight: "bold", color: Colors.black },
     header: { fontSize: 60, color: Colors.pink, alignSelf: "center" },
 });

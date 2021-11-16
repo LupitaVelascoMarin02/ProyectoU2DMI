@@ -16,6 +16,12 @@ import {
     udpateDoc,
 } from "../services/collections";
 import { firestore, auth } from "firebase";
+import styled from 'styled-components';
+
+const StyledView = styled.View`
+    flex: 1px;
+    backgroundColor: white;
+`;
 
 const renderAddListIcon = (addItem) => {
     return (
@@ -77,7 +83,7 @@ export default ({ navigation, route }) => {
     }
 
     return (
-        <View style={styles.container}>
+        <StyledView>
             <FlatList
                 data={toDoItems}
                 renderItem={({
@@ -132,15 +138,11 @@ export default ({ navigation, route }) => {
                     );
                 }}
             />
-        </View>
+        </StyledView>
     );
 };
 
 const styles = StyleSheet.create({
-    container: {
-        flex: 1,
-        backgroundColor: "white",
-    },
     icon: {
         padding: 5,
         fontSize: 32,

@@ -14,6 +14,8 @@ import {
     updateDoc,
 } from "../services/collections";
 import { firestore, auth } from "firebase";
+import styled from 'styled-components';
+
 
 const ListButton = ({ title, color, onPress, onDelete, onOptions }) => {
     return (
@@ -155,7 +157,7 @@ const styles = StyleSheet.create({
         flex: 1,
         backgroundColor: "#fff",
     },
-    itemTitle: { fontSize: 24, padding: 5, color: "white" },
+    itemTitle: { },
     itemContainer: {
         flexDirection: "row",
         justifyContent: "space-between",
