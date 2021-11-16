@@ -1,20 +1,105 @@
-import React from 'react';
-import { NavigationContainer } from '@react-navigation/native';
-import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import LoginScreen from './screens/LoginScreen';
-import HomeScreen from './screens/HomeScreen';
-import RegisterScreen from './screens/RegisterScreen';
+import React, { useState, useEffect } from "react";
+import { NavigationContainer } from "@react-navigation/native";
+import { createStackNavigator } from "@react-navigation/stack";
+import Home from "./screens/Home";
+import ToDoList from "./screens/ToDoList";
+import EditList from "./screens/EditList";
+import Login from "./screens/Login";
+import Settings from "./screens/Settings";
+import Colors from "./constants/Colors";
+import firebase from "firebase/app";
+import "firebase/firestore";
+import User from "./screens/Perfil";
 
-const Stack = createNativeStackNavigator();
+const Stack = createStackNavigator();
+const AuthStack = createStackNavigator();
 
+const AuthScreens = () => {
+    return (
+        <AuthStack.Navigator>
+            <AuthStack.Screen name="Login" component={Login} />
+        </AuthStack.Navigator>
+    );
+};
+const Screens = () => {
+    return (
+        <Stack.Navigator>
+            <Stack.Screen name="Home" component={Home} />
+            <Stack.Screen name="Settings" component={Settings} />
+            <Stack.Screen name="User" component={User}/>
+            <Stack.Screen
+                name="ToDoList"
+                component={ToDoList}
+                options={({ route }) => {
+                    return {
+                        title: route.params.title,
+                        headerStyle: {
+                            backgroundColor: route.params.color,
+                        },
+                        headerTintColor: "white",
+                    };
+                }}
+            />
+            <Stack.Screen
+                name="Edit"
+                component={EditList}
+                options={({ route }) => {
+                    return {
+                        title: route.params.title
+                            ? `Edit ${route.params.title} list`
+                            : "Create new list",
+                        headerStyle: {
+                            backgroundColor: route.params.color || Colors.blue,
+                        },
+                        headerTintColor: "white",
+                    };
+                }}
+            />
+        </Stack.Navigator>
+        
+    );
+};
 export default function App() {
-  return (
-    <NavigationContainer>
-      <Stack.Navigator>
-        <Stack.Screen options={{ headerShown: false }} name="Login" component={LoginScreen} />
-        <Stack.Screen options={{ headerShown: false }} name="Register" component={RegisterScreen} />
-        <Stack.Screen name="Home" component={HomeScreen} />
-      </Stack.Navigator>
-    </NavigationContainer>
-  );
+    const [isAuthenticated, setIsAuthenticated] = useState(false);
+    useEffect(() => {
+        if (firebase.auth().currentUser) {
+            setIsAuthenticated(true);
+        }
+        firebase.auth().onAuthStateChanged((user) => {
+            console.log("Checking auth state...");
+            if (user) {
+                setIsAuthenticated(true);
+            } else {
+                setIsAuthenticated(false);
+            }
+        });
+    }, []);
+
+    return (
+        <NavigationContainer>
+            {isAuthenticated ? <Screens /> : <AuthScreens />}
+        </NavigationContainer>
+    );
+}
+
+const firebaseConfig = {
+
+    apiKey: "AIzaSyANQ6Z6BkTcQ5bBp2QlOVioHQPW3RDDgEY",
+  
+    authDomain: "proyectou2dmi.firebaseapp.com",
+  
+    projectId: "proyectou2dmi",
+  
+    storageBucket: "proyectou2dmi.appspot.com",
+  
+    messagingSenderId: "779551243931",
+  
+    appId: "1:779551243931:web:7508311d2fc604538e503e"
+  
+  };
+
+if (!firebase.apps.length) {
+    firebase.initializeApp(firebaseConfig);
+} else {
+    firebase.app(); 
 }

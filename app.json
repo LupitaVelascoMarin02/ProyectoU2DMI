@@ -1,7 +1,7 @@
 {
   "expo": {
-    "name": "ProyectoU2DMI",
-    "slug": "ProyectoU2DMI",
+    "name": "fire-to-do-app",
+    "slug": "fire-to-do-app",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
